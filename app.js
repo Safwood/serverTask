@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 
 const app = express();
 
-app.use(express.json({ extended: true }))
+app.use(express.json({ extended: true }));
 
 if (process.env.NODE_ENV === 'production') {
   app.use('/', express.static(path.join(__dirname, 'client', 'build')))
