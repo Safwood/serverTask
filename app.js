@@ -15,7 +15,7 @@ app.use((req, res, next) => {
 });
 
 if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, 'public')))
+  app.use(express.static(path.resolve(__dirname, 'public')))
 
   app.get('/*', (req, res) => {
     res.sendFile(path.resolve(__dirname, './public/index.html'))
@@ -31,8 +31,6 @@ if (process.env.NODE_ENV === 'production') {
 
 // express()
 //   .use(express.static(path.join(__dirname, 'public')))
-//   .set('views', path.join(__dirname, 'views'))
-//   .set('view engine', 'ejs')
 //   .get('/', (req, res) => res.render('pages/index'))
 //   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
 
