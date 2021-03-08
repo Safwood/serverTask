@@ -7,13 +7,34 @@ const app = express();
 
 app.use(express.json({ extended: true }));
 
-if (process.env.NODE_ENV === 'production') {
-  app.use('/', express.static(path.join(__dirname, 'client', 'build')))
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Headers', 'Origin, Content-Type, X-Auth-Token');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT');
+  next();
+});
 
-  app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, 'public')))
+
+  app.get('/*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, './public/index.html'))
   })
 }
+
+// if (process.env.NODE_ENV === 'production') {
+//   app.use(express.static(path.resolve(__dirname, '../public')));
+//   app.get('/*', (req, res) => {
+//     res.sendFile(path.resolve(__dirname, '../public/index.html'));
+//   });
+// }
+
+// express()
+//   .use(express.static(path.join(__dirname, 'public')))
+//   .set('views', path.join(__dirname, 'views'))
+//   .set('view engine', 'ejs')
+//   .get('/', (req, res) => res.render('pages/index'))
+//   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
 
 // const PORT = config.get('port') || 5000;
 let PORT = process.env.PORT;
