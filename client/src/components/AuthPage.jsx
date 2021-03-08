@@ -1,12 +1,16 @@
-import React, {useContext, useEffect, useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import {useHttp} from '../hooks/http.hook'
 import {useMessage} from '../hooks/message.hook'
-import {AuthContext} from '../context/AuthContext'
+import { connect } from "react-redux";
+import { authenticate } from "../redux/actions/authenticateAction";
+import { logIn } from "../redux/actions/logInAction";
+import { register } from "../redux/actions/registerAction";
 
-export const AuthPage = () => {
-  const auth = useContext(AuthContext)
+
+
+export const AuthPage = (props) => {
   const message = useMessage()
-  const {loading, request, error, clearError} = useHttp()
+  const {request, error, clearError} = useHttp()
   const [form, setForm] = useState({
     email: "",
     password: ""
@@ -22,17 +26,19 @@ export const AuthPage = () => {
     setForm({...form, [e.target.name]: e.target.value})
   }
 
+
   const registerHandler = async () => {
     try {
       const data = await request('/api/auth/register', 'POST', {...form}) 
-      message(data.message)
+      console.log(data)
+      props.logIn(data.userId)// 
     } catch (e) {}
   }
 
   const loginHandler = async () => {
     try {
       const data = await request('/api/auth/login', 'POST', {...form})
-      auth.login(data.token, data.userId)
+      props.logIn(data.userId)// 
     } catch (e) {}
   }
 
@@ -54,11 +60,20 @@ export const AuthPage = () => {
           </div>
         </div>
         <div className="card-action">
-          <button className="btn blue lighten-4 black-text"  onClick={loginHandler} disable={loading} style={{marginRight: 10}}>Войти</button>
-          <button className="btn blue lighten-3 black-text" onClick={registerHandler} disable={loading} >Авторизация</button>
+          <button className="btn blue lighten-4 black-text"  onClick={loginHandler} style={{marginRight: 10}}>Войти</button>
+          <button className="btn blue lighten-3 black-text" onClick={registerHandler} >Авторизация</button>
         </div>
       </div>
       </div>
     </div>
   )
 }
+
+
+const mapDispatchToProps = dispatch => ({
+  auth: (email, password) => dispatch(authenticate({email, password})),
+  logIn: (token) => dispatch(logIn(token)),
+  register: (token) => dispatch(register(token))
+})
+
+export default connect(null, mapDispatchToProps)(AuthPage);

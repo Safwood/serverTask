@@ -1,15 +1,16 @@
-import React, {useContext} from 'react'
-import {NavLink, useHistory} from 'react-router-dom'
-import {AuthContext} from '../context/AuthContext'
+import React from 'react'
+import {NavLink} from 'react-router-dom'
+import { logOut } from "../redux/actions/logOutAction";
+import { connect } from "react-redux";
 
-export const Navbar = () => {
-  const history = useHistory()
-  const auth = useContext(AuthContext)
+export const Navbar = (props) => {
+  // const unauthenticate = () => {
+    
+  // }
 
   const logoutHandler = event => {
-    event.preventDefault()
-    auth.logout()
-    history.push('/')
+    event.preventDefault();
+    props.logOut();
   }
 
   return (
@@ -25,3 +26,9 @@ export const Navbar = () => {
     </nav>
   )
 }
+
+const mapDispatchToProps = dispatch => ({
+  logOut: () => dispatch(logOut())
+})
+
+export default connect(null, mapDispatchToProps)(Navbar);

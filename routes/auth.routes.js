@@ -34,8 +34,9 @@ async (req, res) => {
     const user = new User({email, password: hashedPassword});
 
     await user.save();
+    const savedUser = await User.findOne({ email })
 
-    res.status(201).json({ message: "Пользователь  создан"})
+    res.status(201).json({ userId: savedUser.id, message: "Пользователь  создан"})
 
 
   } catch (e) {
