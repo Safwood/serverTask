@@ -3,39 +3,33 @@ import './css/App.css';
 import 'materialize-css';
 import {Switch, Route, Redirect} from "react-router-dom"
 import {CountryPage} from './components/CountryPage'
+import {MainPage} from './components/MainPage'
 import AuthPage from './components/AuthPage'
 import { connect } from "react-redux";
-import Navbar from './components/Navbar'
 
 function App(props) {
-  
   return (
         <div className="container">
-          <Navbar />
           {props.isAuthenticated 
           ?
           (
           <Switch>
-            <Route path="/links" exact>
+            <Route path="/main" exact>
+              <MainPage />
+            </Route>
+            <Route path="/country" exact>
               <CountryPage />
             </Route>
-            <Route path="/create" exact>
-              <CountryPage />
-            </Route>
-            <Route path="/details/:id">
-              <CountryPage />
-            </Route>
-            <Redirect to="/create"/>
+            <Redirect to="/main"/>
           </Switch>
-          
           )
             :
           (
             <Switch>
-              <Route path="/" exact>
+              <Route path="/main" exact>
                   <AuthPage />
                 </Route>
-                <Redirect to="/"/>
+                <Redirect to="/main"/>
             </Switch>
           )
         }
