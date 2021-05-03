@@ -1,0 +1,6 @@
+{
+  "port": 5000,
+  "jwtSecret": "anastasia safwood mern",
+  "mongoUri": "mongodb+srv://anastasia:89269112863@cluster0.hqao8.mongodb.net/travelapp?retryWrites=true&w=majority",
+  "baseUrl": "http://localhost:5000" 
+}
