@@ -1,47 +1,62 @@
-import React from 'react';
-import './css/App.css';
-import 'materialize-css';
+import React, { useEffect, useCallback } from 'react';
+import { useDispatch, useSelector} from "react-redux"
 import {Switch, Route, Redirect} from "react-router-dom"
-import {CountryPage} from './components/CountryPage'
-import {MainPage} from './components/MainPage'
-import AuthPage from './components/AuthPage'
-import { connect } from "react-redux";
+import {VocabularyPage} from './pages/VocabularyPage/VocabularyPage'
+import MainPage from './pages/MainPage/MainPage'
+import LoginPage from './pages/LoginPage/LoginPage'
+import ProfilePage from './pages/PropfilePage/PropfilePage'
 
-function App(props) {
+import Header from "./components/Header/Header"
+import { theme } from "./theme";
+import { ThemeProvider } from "@material-ui/core";
+
+function App() {
+  const isAuthenticated = useSelector(state => state.auth.isAuthenticated)
+  const dispatch = useDispatch();
+  const getUsersData = useCallback(() => dispatch({type: 'userdata/GET_USER_DATA'}), [dispatch]); 
+
+  useEffect(() => {
+    getUsersData()
+  }, [getUsersData])
+
   return (
-        <div className="container">
-          {props.isAuthenticated 
+    <ThemeProvider theme={theme}>
+        <div>
+          <Header />
+          {isAuthenticated 
           ?
           (
           <Switch>
-            <Route path="/main" exact>
+            <Route path="/" exact >
               <MainPage />
             </Route>
-            <Route path="/country" exact>
-              <CountryPage />
+            <Route path="/profile" >
+              <ProfilePage />
             </Route>
-            <Redirect to="/main"/>
+            <Route path="/vocabulary">
+              <VocabularyPage />
+            </Route>
+            {/* <Route path="/topics">
+              <ThemeList />
+            </Route> */}
+            <Redirect to="/"/>
           </Switch>
           )
             :
           (
             <Switch>
-              <Route path="/main" exact>
-                  <AuthPage />
-                </Route>
-                <Redirect to="/main"/>
+              <Route path="/login">
+                  <LoginPage />
+              </Route>
+              <Redirect to="/login"/>
             </Switch>
           )
         }
     </div>
+    </ThemeProvider>
   )
 }
 
-// export default App
 
-const mapStateToProps = (state) => ({
-  isAuthenticated: state.auth.isAuthenticated
-})
-
-export default connect(mapStateToProps)(App);
+export default App;
 
