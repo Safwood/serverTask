@@ -10,7 +10,9 @@ import './ThemeList.css'
 const ThemeList = () => {
   const dispatch = useDispatch();
   const saveWords = useCallback((topic, words, wordsId) => dispatch({type: 'words/SAVE_WORDS', payload: {topic, words, wordsId}}), [dispatch]);
-  const wordsId = "6091994681c1e41778dd03ad"
+  
+  // const wordsId = "608f8be6a8232e12dc1d7198" // если  нет то null  и  тогда создается новый. берем из store прии открытии темы
+  const wordsId = null // если  нет то null  и  тогда создается новый. берем из store прии открытии темы
 
   const [wordList, setWordList] = useState({
     words: []

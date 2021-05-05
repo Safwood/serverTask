@@ -1,15 +1,30 @@
-import { SAVE_WORDS_SUCCESS, SAVE_WORDS_FAIL, GET_WORDS_SUCCESS  } from "./wordsAction";
+import { SAVE_WORDS_SUCCESS, SAVE_WORDS_FAIL, GET_WORDS_SUCCESS, saveWordsType, saveWordsSuccessType ,saveWordsFailType, getWordsSuccessType  } from "./wordsAction";
 
-
-const initialState = {
-  wordList: {
-    
+type InitialStateType = {
+  wordList?: {
+    [key: number]:  {
+      topic?: string,
+      words?: Array<Array<string>>,
+      wordsId?: number | string
+    } | string[]
   },
+  isWordListSaved: boolean
+  error: string | null
+}
+
+const initialState: InitialStateType = {
+  wordList: {},
   isWordListSaved: false,
   error: null
 }
 
-export default function authReducer(state = initialState, action) {
+export default function wordsReducer(state = initialState, action:
+  saveWordsType | 
+  saveWordsSuccessType |
+  saveWordsFailType | 
+  getWordsSuccessType 
+  ): InitialStateType {
+
   console.log(action)
   switch(action.type) {
     case SAVE_WORDS_SUCCESS: {
@@ -23,7 +38,6 @@ export default function authReducer(state = initialState, action) {
         wordList: {
           ...state.wordList,
           [wordsId]: {
-            ...state.wordList[wordsId],
             topic: topic,
             words: words,
             wordsId: wordsId
@@ -34,11 +48,11 @@ export default function authReducer(state = initialState, action) {
       }
     }
     case GET_WORDS_SUCCESS: {
-
+      const {wordList} = action.payload;
       return {
         ...state, 
         wordList: {
-          ...action.payload.wordList
+          ...wordList
         }
       }
     }

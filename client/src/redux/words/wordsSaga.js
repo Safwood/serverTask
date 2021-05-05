@@ -1,6 +1,6 @@
 import { takeEvery, call, put } from "redux-saga/effects";
 import { SAVE_WORDS } from "./wordsAction";
-import { saveWordsSuccess, saveWordsFail } from "./wordsAction.js";
+import { saveWordsSuccess, saveWordsFail } from "./wordsAction";
 // import { preloaderOn, preloaderOff } from "../preloader/preloaderAction";
 import { serverSaveWords } from "../serverFunctions/serverSaveWords";
 

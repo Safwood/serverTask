@@ -15,11 +15,15 @@ function App() {
   const dispatch = useDispatch();
   const getUsersData = useCallback(() => dispatch({type: 'userdata/GET_USER_DATA'}), [dispatch]); 
   const getWords = useCallback(() => dispatch({type: 'words/GET_WORDS'}), [dispatch]); 
+  // const logOut = useCallback(() => dispatch({type: 'auth/LOG_OUT'}), [dispatch]);
 
   useEffect(() => {
-    getUsersData()
-    getWords()
-  }, [getUsersData])
+    if(isAuthenticated) {
+      getUsersData()
+      getWords()
+    }
+
+  }, [getUsersData, getWords, isAuthenticated])
 
   return (
     <ThemeProvider theme={theme}>
