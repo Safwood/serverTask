@@ -7,7 +7,7 @@ import { logInFail } from "../auth/logInAction";
 export function* userDataSaga(action) {
   const data = yield call(serverAuth)
 
-  if (data && data.status === 200 || 201) {
+  if (data.data && data.status === 200) {
     yield put(logIn(data.data.userId))
   } else {
     yield put(logInFail(data))

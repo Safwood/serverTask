@@ -14,8 +14,8 @@ export function* registerSaga(action) {
   console.log(data)
 
 
-  if (data && data.status === 200 || 201) {
-    yield put(logIn(data.data.userId))
+  if (data && data.status === 201) {
+    yield put(logIn(data.data.userId)) 
   } else {
     alert("ошибка авторизации")
     yield put(logInFail(data))

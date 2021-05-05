@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from 'react'
-import { useDispatch} from "react-redux"
+import { useDispatch, useSelector} from "react-redux"
 import {NavLink} from 'react-router-dom'
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
@@ -9,7 +9,8 @@ import './ThemeList.css'
 
 const ThemeList = () => {
   const dispatch = useDispatch();
-  const saveWords = useCallback((topic, words) => dispatch({type: 'words/SAVE_WORDS', payload: {topic, words}}), [dispatch]);
+  const saveWords = useCallback((topic, words, wordsId) => dispatch({type: 'words/SAVE_WORDS', payload: {topic, words, wordsId}}), [dispatch]);
+  const wordsId = "6091994681c1e41778dd03ad"
 
   const [wordList, setWordList] = useState({
     words: []
@@ -22,7 +23,6 @@ const ThemeList = () => {
     const newWords = arrangeWordList(currentValue)
     let words = Object.assign(wordList)
     newWords.forEach(array => words.words.push(array))
-    // console.log(words)
     
     setWordList(words)
     setcurrentValue("")
@@ -35,8 +35,8 @@ const ThemeList = () => {
   const clean = () => {
     setWordList({ words: [] })
   }
-  const save = () => {
-    saveWords(theme, wordList.words)
+  const saveWordList = () => {
+    saveWords(theme, wordList.words, wordsId)
   }
 
   return (
@@ -46,7 +46,7 @@ const ThemeList = () => {
             Back to vocabulary
           </Typography>
         </NavLink>
-      <Button onClick={save}>Сохранить
+      <Button onClick={saveWordList}>Сохранить
       </Button>
       <Typography variant="h2" >
         Темы

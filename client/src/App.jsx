@@ -14,9 +14,11 @@ function App() {
   const isAuthenticated = useSelector(state => state.auth.isAuthenticated)
   const dispatch = useDispatch();
   const getUsersData = useCallback(() => dispatch({type: 'userdata/GET_USER_DATA'}), [dispatch]); 
+  const getWords = useCallback(() => dispatch({type: 'words/GET_WORDS'}), [dispatch]); 
 
   useEffect(() => {
     getUsersData()
+    getWords()
   }, [getUsersData])
 
   return (

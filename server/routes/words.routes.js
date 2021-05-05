@@ -1,10 +1,10 @@
 const {Router} = require('express');
 const Words = require('../models/Words');
 const router = Router();
-const bcrypt = require('bcryptjs');
-const {check, validationResult} = require('express-validator');
-const jwt = require('jsonwebtoken');
-const config = require('config');
+// const bcrypt = require('bcryptjs');
+// const {check, validationResult} = require('express-validator');
+// const jwt = require('jsonwebtoken');
+// const config = require('config');
 const authMiddleware = require('../middleware/auth.middleware')
 
 
@@ -12,37 +12,48 @@ const authMiddleware = require('../middleware/auth.middleware')
 router.post('/save', authMiddleware, 
     async (req, res) => {
     try {
-     
-      const {topic, words} = req.body;
-      console.log(topic, words)
-      const oldWords = await Words.findAll({ topic })
-      console.log(oldWords)
+      const {topic, words, wordsId} = req.body;
+      let oldWords;
 
-      const newWords = new Words({topic, words, user: req.user.userId || req.user.id});
+      if(wordsId !== null) {
+        oldWords = await Words.findOneAndUpdate( wordsId, {words: words, topic: topic}, function(err, user){
+          if(err) {
+            return console.log(err);
+          } else {
+            console.log("Обновленный объект", user);
+          }
+        })
 
-      await newWords.save();
-      const savedWords = await Words.findOne({ topic })
+        res.status(201).json({ 
+          wordsId: oldWords._id, 
+          words: oldWords.words, 
+          topic: oldWords.topic, 
+          message: "Список слов обновлен"
+        })
+      } else {
+        const newWords = new Words({topic, words, user: req.user.userId || req.user.id});
+        await newWords.save();
+        const savedWords = await Words.findOne({ topic })
 
-      res.status(201).json({ wordsId: savedWords.id, message: "Список слов добавлен"})
-
-
+        res.status(201).json({ wordsId: savedWords.id, message: "Список слов добавлен"})
+      }
+      
     } catch (e) {
       res.status(500).json({ message: "Что-то  пошло не так..."})
     }
 })
 
-// /api/words/data
-// router.get('/data', authMiddleware,
-//   async (req, res) => {
-//     try {
-//       const user = await User.findOne({_id: req.user.userId || req.user.id})
-//       console.log(user)
-//       const token = jwt.sign({id: user.id}, config.get("jwtSecret"), {expiresIn: "1h"})
-//       return res.json({ token, userId: user.id })
+// /api/words/get
+router.get('/get', authMiddleware,
+  async (req, res) => {
+    try {
+      const wordList = await Words.find({user: req.user.userId || req.user.id})
+      console.log(wordList)
 
-//     } catch (e) {
-//       res.status(500).json({ message: "Что-то  пошло не так в dataFetch..."})
-//     }
-// })
+      return res.json({ wordList, message: "Список слов найден"})
+    } catch (e) {
+      res.status(500).json({ message: "Что-то  пошло не так в wordsFetch..."})
+    }
+})
 
 module.exports = router;

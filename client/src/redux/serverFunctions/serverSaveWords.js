@@ -1,10 +1,10 @@
 import axios from 'axios';
 
-export const serverSaveWords = async (topic, words) => { 
-  console.log(topic, words)
+export const serverSaveWords = async (topic, words, wordsId) => { 
   const data = {
     topic: topic,
-    words: words
+    words: words,
+    wordsId: wordsId
   }
   try {
     const response = await axios.post(`http://localhost:5000/api/words/save`, data,
@@ -12,7 +12,7 @@ export const serverSaveWords = async (topic, words) => {
       headers: {Authorization: "Bearer " + `${localStorage.getItem("token")}`}
     })
     console.log(response)
-    return response
+    return response.data
   } catch(e) {
     console.log(e.response.data.message)
     return e.response.data.message

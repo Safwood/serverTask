@@ -1,25 +1,46 @@
-import { GET_WORDS, SAVE_WORDS, SAVE_WORDS_SUCCESS, SAVE_WORDS_FAIL  } from "./wordsAction";
+import { SAVE_WORDS_SUCCESS, SAVE_WORDS_FAIL, GET_WORDS_SUCCESS  } from "./wordsAction";
 
 
 const initialState = {
-  wordList: [
-    {
-    wordsId: null,
-    topic: "",
-    words: []
-    }
-  ],
+  wordList: {
+    
+  },
   isWordListSaved: false,
   error: null
 }
 
 export default function authReducer(state = initialState, action) {
+  console.log(action)
   switch(action.type) {
-    // case GET_WORDS: {
-    //   return {...state, isAuthenticated: true, userId: action.payload, error: null}
-    // }
     case SAVE_WORDS_SUCCESS: {
-      return {isWordListSaved: true, wordList: action.payload.wordsId, error: null}
+      const {
+        topic, 
+        words,
+        wordsId
+      } = action.payload;
+      return {
+        ...state, 
+        wordList: {
+          ...state.wordList,
+          [wordsId]: {
+            ...state.wordList[wordsId],
+            topic: topic,
+            words: words,
+            wordsId: wordsId
+          }
+        },
+        isWordListSaved: true,
+        error: null
+      }
+    }
+    case GET_WORDS_SUCCESS: {
+
+      return {
+        ...state, 
+        wordList: {
+          ...action.payload.wordList
+        }
+      }
     }
     case SAVE_WORDS_FAIL: {
       return {...state, error: action.payload.error}
