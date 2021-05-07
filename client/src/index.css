@@ -3,3 +3,17 @@
 input.inputStyle {
   border-bottom: 1px solid #fff !important;
 }
+
+html {
+  font-size: 18px;
+  color: rgba(0, 0, 0, 0.768);
+}
+
+button {
+  background-color: #009999;
+  color: #fff;
+}
+
+button:hover {
+  background-color: #006363;
+}

@@ -1,9 +1,11 @@
 import { createMuiTheme } from "@material-ui/core/styles";
-const ACCENT_COLOR = "#5c75f4";
-const LIGHT_COLOR = "#bfd7ff";
-const DARK_COLOR = "#084ac0";
-const TEXT_COLOR = "#000";
-const RED_COLOR = '#ff5f56';
+export const ACCENT_COLOR = "#009999";
+export const LIGHT_COLOR = "#33CCCC";
+export const DARK_COLOR = "#006363";
+export const TEXT_COLOR = "rgba(0, 0, 0, 0.768)";
+export const SECOND_COLOR = '#FF7400';
+export const SECOND_LIGHT_COLOR = '#FFB273';
+export const SECOND_BRIGHT_COLOR = '#FF9640';
 
 // Create a theme instance.
 export const theme = createMuiTheme({
@@ -14,7 +16,7 @@ export const theme = createMuiTheme({
       dark: DARK_COLOR
     },
     secondary: {
-      main: RED_COLOR,
+      main: SECOND_COLOR,
       contrastText: "#fff"
     }
   },
@@ -31,13 +33,13 @@ export const theme = createMuiTheme({
     fontFamily: "Roboto",
     body1: {
       fontFamily: "Roboto",
-      fontSize: "20px",
+      fontSize: "1.2rem",
       marginBottom: "10px",
     },
     body2: {
       fontFamily: "Roboto",
       marginBottom: "10px",
-      fontSize: "16px",
+      fontSize: "1.5rem",
     },
     
     h1: {
@@ -81,6 +83,11 @@ export const theme = createMuiTheme({
     borderRadius: 0,
   },
   overrides: {
+    MuiSvgIcon: {
+      root: {
+        color: LIGHT_COLOR
+      }
+    },
     MuiPaper: {
       root: {
         borderRadius: "4px"
@@ -105,10 +112,14 @@ export const theme = createMuiTheme({
     },
     MuiButton: {
       root: {
-        backgroundColor: ACCENT_COLOR,
+        backgroundColor: SECOND_BRIGHT_COLOR,
+        color: TEXT_COLOR,
         borderRadius: "8px",
         "&:focus": {
           outline: "none",
+        },
+        "&:hover": {
+          backgroundColor: SECOND_LIGHT_COLOR,
         },
       },
     },
@@ -120,11 +131,6 @@ export const theme = createMuiTheme({
       paper: {
         background: "#5c75f4",
         borderRadius: "4px"
-      }
-    },
-    MuiSvgIcon: {
-      root: {
-        color: '#fff'
       }
     },
     MuiSelect: {

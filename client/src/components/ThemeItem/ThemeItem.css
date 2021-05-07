@@ -1,0 +1,77 @@
+
+.theme__content {
+  display: flex;
+  width: 100%;
+}
+
+.theme {
+  height: 3rem;
+  flex: 1;
+  margin: 0;
+  margin-bottom: 0.6rem;
+  background-color: #FF9640;
+  padding: 10px;
+  border-radius: 4px;
+  margin-right: 0.8rem;
+  }
+
+.theme:hover {
+  background-color: #FFB273;
+  transition: 0.4s;
+}
+
+.theme__link {
+  height: 100%;
+  width: 100%;
+  cursor: pointer;
+  color: rgba(0, 0, 0, 0.768);
+  
+}
+
+.theme--add {
+  background-color: bisque;
+  margin-right: 0;
+}
+
+
+.theme__title {
+  font-size: 12px;
+  font-weight: bold;
+  text-align: center;
+  font-family: Roboto;
+  text-transform: uppercase;
+}
+
+.theme__checkbox--invisible {
+  width: 39px;
+  margin-right: 6px;
+}
+
+.theme__checkbox--invisible:last-child {
+  margin-right: 0;
+}
+
+.theme__edit {
+  margin-right: 0.2rem;
+  display: flex;
+    align-items: center;
+    margin-bottom: 0.6rem;
+}
+
+.theme__delete {
+  background-color: transparent;
+border: none;
+margin-bottom: 0.6rem;
+}
+
+.theme__delete:focus  {
+  background-color: transparent;
+  outline:none;
+  cursor: pointer;
+}
+
+.theme__delete:hover {
+  background-color: transparent;
+  outline:none;
+  cursor: pointer;
+}

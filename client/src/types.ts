@@ -1,9 +1,9 @@
-export type AuthFormValuesType = {
-  email: string
-  password: string
-  name?: string
-  surname?: string
+export type OneThemeType = {
+  topic?: string,
+  words?: Array<Array<string>>,
+  wordsId?: number | string
 }
+
 // export type CardFormValuesType = {
 //   cardNumber: string 
 //   expiryDate: string 

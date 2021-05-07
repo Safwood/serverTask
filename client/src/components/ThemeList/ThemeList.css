@@ -1,46 +1,26 @@
-.words {
-  height: 350px;
-  width: 260px;
-  word-break:break-all;
+.theme__wrapper {
+  padding: 1.5rem 0;
 }
 
-.content {
-  display: flex;
-  justify-content: space-between;
-}
-
-.contentList {
-  height: 350px;
-  width: 260px;
-  border: 1px solid #000;
-  padding: 10px;
-  margin: 0;
-  margin-bottom: 10px;
-}
-
-.deleteButton {
-  font-size: 12px;
-  height: 26px;
-  font-weight: bold;
-}
-
-.column {
-  width: 260px
-}
-
-.item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.itemWord {
+.theme__heading {
   text-align: center;
-  
 }
 
-.itemWordDash {
-  font-weight: bold;
-  font-size: 20px;
-  margin: 0;
+.theme__list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 11% 0 11%;
+}
+.theme__item {
+  width: 100%;
+} 
+
+.theme__links {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+.theme__link {
+  text-align: center;
 }

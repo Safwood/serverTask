@@ -11,11 +11,7 @@ function ProfilePage() {
       <Typography variant="h2">
         Моя страница
       </Typography>
-      <NavLink to="/vocabulary">
-        <Typography variant="body1" >
-          Vocabulary
-        </Typography>
-      </NavLink>
+      
     </Container>
   )
 }

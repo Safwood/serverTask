@@ -13,8 +13,7 @@ export function* saveWordsSaga(action) {
   // yield put(preloaderOff())
 
   if (data.wordsId) {
-    console.log(data)
-    yield put(saveWordsSuccess(topic, words, wordsId ))
+    yield put(saveWordsSuccess(topic, words, data.wordsId ))
   } else {
     alert("ошибка")
     yield put(saveWordsFail(data))

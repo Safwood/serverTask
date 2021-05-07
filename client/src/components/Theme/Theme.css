@@ -1,0 +1,35 @@
+.topic__heading {
+  text-align: center;
+  text-transform: uppercase;
+}
+.topic__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.topic {
+  padding: 2rem 0 0 0;
+}
+
+.topic__word {
+  font-size: 1.5rem;
+  font-family: Roboto;
+  text-align: center;
+}
+.topic__list {
+  margin: 0 21%;
+  margin-bottom: 4rem;
+}
+
+.topic__links {
+  display: flex;
+  justify-content: space-between;
+  width: 70%;
+}
+
+.topic__link {
+  color: #FF9640;
+}
+.topic__link:hover {
+  color: #FF7400;
+}

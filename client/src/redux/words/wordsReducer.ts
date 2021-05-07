@@ -6,7 +6,7 @@ type InitialStateType = {
       topic?: string,
       words?: Array<Array<string>>,
       wordsId?: number | string
-    } | string[]
+    } | any
   },
   isWordListSaved: boolean
   error: string | null
@@ -25,7 +25,6 @@ export default function wordsReducer(state = initialState, action:
   getWordsSuccessType 
   ): InitialStateType {
 
-  console.log(action)
   switch(action.type) {
     case SAVE_WORDS_SUCCESS: {
       const {

@@ -48,6 +48,11 @@ export const Header = () => {
                   Profile
                 </Typography>
               </NavLink> 
+              <NavLink to="/vocabulary">
+                <Typography variant="body1"  className={classes.menuItem}>
+                  Vocabulary
+                </Typography>
+              </NavLink>
                
             </Grid>
           : null}
