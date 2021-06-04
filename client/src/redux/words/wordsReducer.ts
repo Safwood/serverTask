@@ -1,4 +1,11 @@
-import { SAVE_WORDS_SUCCESS, SAVE_WORDS_FAIL, GET_WORDS_SUCCESS, saveWordsType, saveWordsSuccessType ,saveWordsFailType, getWordsSuccessType  } from "./wordsAction";
+import { SAVE_WORDS_SUCCESS, 
+  SAVE_WORDS_FAIL, 
+  GET_WORDS_SUCCESS, 
+  deleteWordsSuccessType, 
+  DELETE_WORDS_SUCCESS,
+  saveWordsSuccessType ,
+  saveWordsFailType, 
+  getWordsSuccessType  } from "./wordsAction";
 
 type InitialStateType = {
   wordList?: {
@@ -19,10 +26,11 @@ const initialState: InitialStateType = {
 }
 
 export default function wordsReducer(state = initialState, action:
-  saveWordsType | 
+  // saveWordsType | 
   saveWordsSuccessType |
   saveWordsFailType | 
-  getWordsSuccessType 
+  getWordsSuccessType | 
+  deleteWordsSuccessType
   ): InitialStateType {
 
   switch(action.type) {
@@ -52,13 +60,30 @@ export default function wordsReducer(state = initialState, action:
         ...state, 
         wordList: {
           ...wordList
-        }
+        },
+        isWordListSaved: true,
+        error: null
       }
     }
     case SAVE_WORDS_FAIL: {
-      return {...state, error: action.payload.error}
+      return {...state, 
+        wordList: {},
+        isWordListSaved: false,
+        error: action.payload.error}
+    }
+    case DELETE_WORDS_SUCCESS: {
+      const {wordList} = action.payload;
+      return {
+        ...state, 
+        wordList: {
+          ...wordList
+        },
+        isWordListSaved: true,
+        error: null
+      }
     }
     default: 
       return state
   }
 }
+

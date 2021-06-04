@@ -3,7 +3,6 @@ import Container from '@material-ui/core/Container';
 import Toolbar from '@material-ui/core/Toolbar';
 import AppBar from '@material-ui/core/AppBar';
 import Grid from '@material-ui/core/Grid';
-// import SimpleMenu from '../components/Menu'
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import { useHistory } from 'react-router-dom';

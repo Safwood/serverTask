@@ -12,11 +12,6 @@ import { OneThemeType } from '../../types';
 
 
 
-// type ThemeEditPropType = {
-//   topic: string
-//   themeId: string
-// }
-
 function ThemeEdit() {
   const themeWords = useSelector((state: RootState) => state.words.wordList)
   const {id}: any = useParams();
@@ -24,9 +19,9 @@ function ThemeEdit() {
   const saveWords = useCallback((topic, words, wordsId) => dispatch({type: 'words/SAVE_WORDS', payload: {topic, words, wordsId}}), [dispatch]);
   let filteredWords: OneThemeType = {
     topic: '',
-    words: [['', '']],
+    words: [],
     wordsId: ''
-  };
+  }; 
 
   if(themeWords && id !== 'null') {
     filteredWords = themeWords[id]

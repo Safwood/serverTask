@@ -1,12 +1,13 @@
 
-import React from 'react';
+import React, {useCallback} from 'react';
 import Typography from '@material-ui/core/Typography';
-// import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import './ThemeItem.css'
 import { Link } from 'react-router-dom';
-import Checkbox from '@material-ui/core/Checkbox';
+// import Checkbox from '@material-ui/core/Checkbox';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
+import { RootState } from '../../redux/rootReducer'
 
 type ThemeItemPropType = {
   theme: string | null
@@ -16,26 +17,30 @@ type ThemeItemPropType = {
 }
 
 function ThemeItem({theme, id, onChange, checked}: ThemeItemPropType) {
-
-  const handleChange = (event: any) => {
-    console.log(event.target)
-    // const data = {id: event.target.checked}
-    onChange(event.target.id);
-  };
+  const themeWords = useSelector((state: RootState) => state.words.wordList);
+  const dispatch = useDispatch();
+  const deleteWords = useCallback((topic, wordsId, wordList) => dispatch({type: 'words/DELETE_WORDS', payload: {topic, wordsId, wordList}}), [dispatch]); 
 
   // const handleChange = (event: any) => {
-  //   onChange(event.target.value);
+    // const data = {id: event.target.checked}
+    // onChange(event.target.id);
   // };
+
+  const handleClick = (): void => {
+    deleteWords(theme, id, themeWords)
+  };
 
   return (
     <div className="theme__content">
-      {id ?  <Checkbox
-          className="theme__checkbox"
-          checked={checked}
-          onChange={handleChange}
-          id={id ? `${id}` : "null"}
-        />
-      : <div className="theme__checkbox theme__checkbox--invisible"></div>}
+      {
+      // id ?  <Checkbox
+      //     className="theme__checkbox"
+      //     checked={checked}
+      //     onChange={handleChange}
+      //     id={id ? `${id}` : "null"}
+      //   />
+      // : 
+      <div className="theme__checkbox theme__checkbox--invisible"></div>}
       <div className={id ? "theme" : "theme theme--add"} id={id ? id : "null"}>
         <Link to={id ? `/vocabulary/topic/${id}` : `/vocabulary/edit/${id}`} className="theme__link">
           <Typography className="theme__title" variant="body1">{theme ? theme : "Добавить"}</Typography>
@@ -47,7 +52,7 @@ function ThemeItem({theme, id, onChange, checked}: ThemeItemPropType) {
         <Link to={`/vocabulary/edit/${id}`} className="theme__edit">
           <EditIcon />
         </Link >
-        <button className="theme__delete">
+        <button className="theme__delete" onClick={handleClick}>
           <DeleteIcon />
         </button>
       </>

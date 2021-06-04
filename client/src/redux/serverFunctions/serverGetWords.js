@@ -7,7 +7,7 @@ export const serverGetWords = async () => {
       headers: {Authorization: "Bearer " + `${localStorage.getItem("token")}`},
       
     })
-    console.log(response)
+    console.log(response.data.message)
     return response
   } catch(e) {
     console.log(e.response.data.message)

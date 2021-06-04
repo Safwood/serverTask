@@ -7,7 +7,6 @@ export function setWordList(wordList) {
         wordsId: topic._id
     }
   });
-  // console.log(result)
 
   return result
 }

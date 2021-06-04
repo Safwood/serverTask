@@ -10,6 +10,8 @@ import { theme } from "./theme";
 import  Theme  from "./components/Theme/Theme";
 import  ThemeEdit  from "./components/ThemeEdit/ThemeEdit";
 import { ThemeProvider } from "@material-ui/core";
+import { PrivateRoute } from "./privateRoute";
+
 
 function App() {
   const isAuthenticated = useSelector(state => state.auth.isAuthenticated)
@@ -36,18 +38,18 @@ function App() {
             <Route path="/" exact >
               <MainPage />
             </Route>
-            <Route path="/profile" >
+            <PrivateRoute path="/profile" >
               <ProfilePage />
-            </Route>
-            <Route path="/vocabulary" exact>
+            </PrivateRoute>
+            <PrivateRoute path="/vocabulary" exact>
               <VocabularyPage />
-            </Route>
-            <Route path="/vocabulary/topic/:id">
+            </PrivateRoute>
+            <PrivateRoute path="/vocabulary/topic/:id">
               <Theme />
-            </Route>
-            <Route path="/vocabulary/edit/:id">
+            </PrivateRoute>
+            <PrivateRoute path="/vocabulary/edit/:id">
               <ThemeEdit />
-            </Route>
+            </PrivateRoute>
             <Redirect to="/"/>
           </Switch>
           )

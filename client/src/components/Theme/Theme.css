@@ -33,3 +33,12 @@
 .topic__link:hover {
   color: #FF7400;
 }
+
+.topic__links {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  text-align: center;
+  width: 100%;
+  margin-top: 1rem;
+}

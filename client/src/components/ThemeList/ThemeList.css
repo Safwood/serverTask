@@ -15,12 +15,3 @@
 .theme__item {
   width: 100%;
 } 
-
-.theme__links {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 1rem;
-}
-.theme__link {
-  text-align: center;
-}

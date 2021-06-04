@@ -7,11 +7,6 @@ import { useSelector} from "react-redux"
 import { RootState } from '../../redux/rootReducer'
 import { useParams } from 'react-router-dom';
 
-// type ThemePropType = {
-//   topic: string
-//   themeId: string
-// }
-
 function Theme() {
   const themeWords = useSelector((state: RootState) => state.words.wordList)
   const {id}: any = useParams();
@@ -23,6 +18,11 @@ function Theme() {
   
   return (
     <div className="container">
+      <div className="topic__links">
+        <Link className="topic__link" to={`/vocabulary/study/1`} >Заучивать</Link>
+        <Link className="topic__link" to={`/vocabulary/study/1`} >TangledWord</Link>
+        <Link className="topic__link" to={`/vocabulary/study/1`} >TangledWord1</Link>
+      </div>
       <div className="topic">
         <div className="topic__content">
           <Typography className="topic__heading" variant="h2" >{filteredWords ? filteredWords.topic : null}</Typography>

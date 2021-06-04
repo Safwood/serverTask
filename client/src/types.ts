@@ -1,6 +1,6 @@
 export type OneThemeType = {
   topic?: string,
-  words?: Array<Array<string>>,
+  words?: Array<Array<string>> | null,
   wordsId?: number | string
 }
 

@@ -4,7 +4,6 @@ import Typography from '@material-ui/core/Typography';
 import './ThemeList.css'
 import ThemeItem from '../ThemeItem/ThemeItem'
 import { RootState } from '../../redux/rootReducer'
-import { Link } from 'react-router-dom';
 
 type checkedLinesType = {
   [key: string]:  boolean
@@ -19,15 +18,10 @@ function ThemeList() {
   const [checked, setChecked]: any = React.useState(null);
 
   const handleChange = (value: any): void => {
-    console.log(value)
     // setChecked(value);
     // setChecked({ ...checked, value })
   };
 
-  // const handleChange = (value: string) => {
-  //   setSelectedValue(value);
-  // };
-  
   useEffect(() => {
     if(allWords) {
       let allWordsArray;
@@ -40,16 +34,11 @@ function ThemeList() {
       }))
       setChecked(checkedLines)
     }
-  }, [])
+  }, [allWords])
   
   return (
     <div className="theme__wrapper">
       <div className="container">
-        <div className="theme__links">
-        <Link className="theme__link" to={`/vocabulary/study/1`} >Заучивать</Link>
-        <Link className="theme__link" to={`/vocabulary/study/1`} >TangledWord</Link>
-        <Link className="theme__link" to={`/vocabulary/study/1`} >TangledWord1</Link>
-        </div>
         <Typography  className="theme__heading"variant="h2">Список тем:</Typography>
         <ul className="theme__list">
           {words

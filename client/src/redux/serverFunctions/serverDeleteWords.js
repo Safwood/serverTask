@@ -1,20 +1,19 @@
 import axios from 'axios';
 
-export const serverSaveWords = async (topic, words, wordsId) => { 
+export const serverDeleteWords = async (wordsId, topic) => { 
   const data = {
     topic: topic,
-    words: words,
     wordsId: wordsId
   }
   try {
-    const response = await axios.post(`http://localhost:5000/api/words/save`, data,
+    const response = await axios.post(`http://localhost:5000/api/words/delete`, data,
     {
       headers: {Authorization: "Bearer " + `${localStorage.getItem("token")}`}
     })
     console.log(response.data)
     return response.data
   } catch(e) {
-    console.log(e.response.data.message)
+    console.log(e.response.message)
     return e.response.data.message
   }
 }

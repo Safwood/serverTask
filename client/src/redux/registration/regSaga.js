@@ -11,8 +11,6 @@ export function* registerSaga(action) {
   // yield put(preloaderOn())
   const data = yield call(serverRegister, email, password)
   // yield put(preloaderOff())
-  console.log(data)
-
 
   if (data && data.status === 201) {
     yield put(logIn(data.data.userId)) 

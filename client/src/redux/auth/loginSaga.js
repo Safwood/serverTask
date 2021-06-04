@@ -10,7 +10,6 @@ export function* authenticateSaga(action) {
   
   // yield put(preloaderOn())
   const data = yield call(serverLogin, email, password)
-  console.log(data.data)
 
   // yield put(preloaderOff())
 
