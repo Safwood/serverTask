@@ -39,9 +39,8 @@ export const theme = createMuiTheme({
     body2: {
       fontFamily: "Roboto",
       marginBottom: "10px",
-      fontSize: "1.5rem",
-    },
-    
+      fontSize: "1rem",
+    },    
     h1: {
       fontWeight: "bold",
       fontSize: "40px",

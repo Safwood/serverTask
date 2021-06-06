@@ -1,11 +1,13 @@
 import React from 'react'
-import LoginForm from '../../components/LoginForm/LoginForm'
-// import { RootState } from '../../redux/rootReducer'
+import LoginForm from './LoginForm/LoginForm'
+import './LoginPage.css'
 
 function LoginPage() {
 
   return (
-    <LoginForm />
+    <div className="login">
+      <LoginForm />
+    </div>
   )
 }
 

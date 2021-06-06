@@ -1,14 +1,13 @@
-
 import React, { useState, useCallback } from 'react'
 import Typography from '@material-ui/core/Typography';
 import './ThemeEdit.css'
 import { useDispatch, useSelector} from "react-redux"
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
-import { arrangeWordList } from '../../helpers/arrangeWordList'
-import { RootState } from '../../redux/rootReducer'
+import { arrangeWordList } from '../../../helpers/arrangeWordList'
+import { RootState } from '../../../redux/rootReducer'
 import { useParams } from 'react-router-dom';
-import { OneThemeType } from '../../types';
+import { OneThemeType } from '../../../types';
 
 
 

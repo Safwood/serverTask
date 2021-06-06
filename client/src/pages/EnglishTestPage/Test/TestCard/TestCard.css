@@ -1,0 +1,7 @@
+.question {
+  display: flex;
+  flex-direction: column;
+  box-shadow: none;
+  width: 80%;
+  margin: auto;
+}

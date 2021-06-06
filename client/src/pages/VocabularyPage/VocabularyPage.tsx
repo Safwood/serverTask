@@ -1,15 +1,19 @@
 import React from 'react'
-// import {Switch, Route, Redirect} from "react-router-dom"
-import ThemeList from '../../components/ThemeList/ThemeList'
+import ThemeList from './ThemeList/ThemeList'
+import Container from '@material-ui/core/Container';
+import Typography from '@material-ui/core/Typography';
 
 export const VocabularyPage = () => {
 
   return (
-    <div>
+    <Container maxWidth="md" className="page__container">
+      <Typography variant="h2" className="page__title"> Список тем:</Typography>
        <ThemeList />
-    </div>
+    </Container>
   )
 }
 
 
 export default VocabularyPage;
+
+

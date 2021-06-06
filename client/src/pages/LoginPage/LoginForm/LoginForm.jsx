@@ -1,5 +1,8 @@
 import React, {useState, useCallback} from 'react'
 import { useDispatch } from "react-redux";
+import Typography from '@material-ui/core/Typography';
+import './LoginForm.css';
+import Button from '@material-ui/core/Button';
 
 function LoginForm() {
   const dispatch = useDispatch();
@@ -25,23 +28,30 @@ function LoginForm() {
   return (
     <div className="row">
       <div className="col s6 offset-s3">
-        <div className="card blue lighten-1">
+        <div className="card" style={{backgroundColor: "#54caca"}}>
         <div className="card-content black-text">
-          <span className="card-title">Авторизация</span>
           <div>
             <div className="input-field  black-text">
               <input id="email" type="text" className="inputStyle black-text" name="email" onChange={handleForm}/>
-              <label htmlFor="email"  className="black-text">Email</label>
+              <label htmlFor="email"  className="black-text">
+                <Typography variant="body2">Email</Typography>
+              </label>
             </div>
             <div className="input-field  black-text">
               <input id="password" type="text"  className=" inputStyle black-text" name="password" onChange={handleForm}/>
-              <label htmlFor="password"  className="black-text">Password</label>
+              <label htmlFor="password"  className="black-text">
+                <Typography variant="body2">Password</Typography>
+              </label>
             </div>
           </div>
         </div>
         <div className="card-action">
-          <button className="btn blue lighten-4 black-text"  onClick={handleClickLogin} style={{marginRight: 10}}>Войти</button>
-          <button className="btn blue lighten-3 black-text" onClick={handleClickReg} >Авторизация</button>
+          <Button onClick={handleClickLogin} style={{marginRight: 10, color: "white",color: "rgba(0, 0, 0, 0.768)", backgroundColor: "#FF9640"}}>
+            Login
+          </Button>
+          <Button onClick={handleClickReg} style={{color: "rgba(0, 0, 0, 0.768)", backgroundColor: "#FF9640"}}>
+            Register
+          </Button>
         </div>
       </div>
       </div>

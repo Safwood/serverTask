@@ -5,10 +5,11 @@ import {VocabularyPage} from './pages/VocabularyPage/VocabularyPage'
 import MainPage from './pages/MainPage/MainPage'
 import LoginPage from './pages/LoginPage/LoginPage'
 import ProfilePage from './pages/PropfilePage/PropfilePage'
+import { EnglishTestPage } from './pages/EnglishTestPage/EnglishTestPage'
 import Header from "./components/Header/Header"
 import { theme } from "./theme";
-import  Theme  from "./components/Theme/Theme";
-import  ThemeEdit  from "./components/ThemeEdit/ThemeEdit";
+import  Theme  from "./pages/VocabularyPage/Theme/Theme";
+import  ThemeEdit  from "./pages/VocabularyPage/ThemeEdit/ThemeEdit";
 import { ThemeProvider } from "@material-ui/core";
 import { PrivateRoute } from "./privateRoute";
 
@@ -41,6 +42,9 @@ function App() {
             <PrivateRoute path="/profile" >
               <ProfilePage />
             </PrivateRoute>
+            <Route path="/test" >
+                <EnglishTestPage />
+              </Route>
             <PrivateRoute path="/vocabulary" exact>
               <VocabularyPage />
             </PrivateRoute>
@@ -56,10 +60,16 @@ function App() {
             :
           (
             <Switch>
+              <Route path="/" exact >
+                <MainPage />
+              </Route>
               <Route path="/login">
                   <LoginPage />
               </Route>
-              <Redirect to="/login"/>
+              <Route path="/test" >
+                <EnglishTestPage />
+              </Route>
+              <Redirect to="/"/>
             </Switch>
           )
         }

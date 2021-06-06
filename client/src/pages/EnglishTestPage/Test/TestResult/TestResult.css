@@ -1,0 +1,16 @@
+.results__text {
+  text-align: center;
+}
+
+.results {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin-bottom: 1rem;
+  width: 80%;
+  margin: auto;
+}
+
+.results:last-child {
+  margin-bottom: 0;
+}

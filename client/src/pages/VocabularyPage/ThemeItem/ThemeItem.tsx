@@ -4,10 +4,9 @@ import Typography from '@material-ui/core/Typography';
 import { useDispatch, useSelector } from 'react-redux';
 import './ThemeItem.css'
 import { Link } from 'react-router-dom';
-// import Checkbox from '@material-ui/core/Checkbox';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
-import { RootState } from '../../redux/rootReducer'
+import { RootState } from '../../../redux/rootReducer'
 
 type ThemeItemPropType = {
   theme: string | null

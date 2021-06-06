@@ -1,0 +1,9 @@
+.start {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.start__text {
+  margin-bottom: 2rem;
+}

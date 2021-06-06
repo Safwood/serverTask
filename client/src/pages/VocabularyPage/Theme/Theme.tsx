@@ -4,7 +4,7 @@ import Typography from '@material-ui/core/Typography';
 import { Link } from 'react-router-dom';
 import './Theme.css'
 import { useSelector} from "react-redux"
-import { RootState } from '../../redux/rootReducer'
+import { RootState } from '../../../redux/rootReducer'
 import { useParams } from 'react-router-dom';
 
 function Theme() {

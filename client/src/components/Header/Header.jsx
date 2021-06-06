@@ -42,9 +42,9 @@ export const Header = () => {
                   Main
                 </Typography>
               </NavLink> 
-              <NavLink to="/profile">
+              <NavLink to="/test">
                 <Typography variant="body1" className={classes.menuItem}>
-                  Profile
+                  English Test
                 </Typography>
               </NavLink> 
               <NavLink to="/vocabulary">
@@ -54,7 +54,20 @@ export const Header = () => {
               </NavLink>
                
             </Grid>
-          : null}
+          : 
+            <Grid  className={classes.menuList}>
+              <NavLink to="/">
+                <Typography variant="body1" className={classes.menuItem}>
+                  Main
+                </Typography>
+              </NavLink> 
+              <NavLink to="/test">
+                <Typography variant="body1" className={classes.menuItem}>
+                  English Test
+                </Typography>
+              </NavLink> 
+              </Grid>
+              }
           <Button color='inherit' onClick={ isAuthenticated ? logoutHandler : loginHandler } id={"login"}>
             { !isAuthenticated ? 'Login' : 'Logout'}
           </Button>
